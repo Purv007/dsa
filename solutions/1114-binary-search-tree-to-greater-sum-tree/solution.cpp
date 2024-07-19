@@ -11,17 +11,16 @@
  */
 class Solution {
 public:
-    int updateTree(TreeNode* root, int valueFromParent){
-        if(root == nullptr) return 0;
-        int sumRight = updateTree(root->right, valueFromParent);
-        int sumLeft = updateTree(root->left, root->val+valueFromParent+sumRight);
-        int totalSum = root->val + sumLeft+ sumRight;
-        root->val = sumRight + root->val + valueFromParent;
-        return totalSum;
-    }
-
     TreeNode* bstToGst(TreeNode* root) {
         updateTree(root,0);
         return root;
+    }
+    int updateTree(TreeNode* &root,int valueFromparent){
+        if(root==NULL) return 0;
+        int sumRight=updateTree(root->right,valueFromparent);
+        int sumLeft=updateTree(root->left,root->val+sumRight+valueFromparent);
+        int total=root->val+sumRight+sumLeft;
+        root->val=valueFromparent+root->val+sumRight;
+        return total;
     }
 };
