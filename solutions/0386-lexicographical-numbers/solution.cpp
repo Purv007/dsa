@@ -1,26 +1,21 @@
 class Solution {
 public:
     vector<int> lexicalOrder(int n) {
-        vector<int> lexicographicalNumebrs;
-        for(int start=1;start<=9;++start){
-            generateLexicalNumbers(start,n,lexicographicalNumebrs);
-        }
-        return lexicographicalNumebrs;
-    }
+        vector<int>lexi;
+        int curr=1;
 
-    void generateLexicalNumbers(int currNo,int limit,vector<int>&result){
-        if(currNo>limit) return;
+        for(int i=0;i<n;i++){
+            lexi.push_back(curr);
 
-        result.push_back(currNo);
-
-        for(int nxt=0;nxt<=9;++nxt){
-            int nxtNo=10*currNo +nxt;
-            if(nxtNo<=limit){
-                generateLexicalNumbers(nxtNo,limit,result);
-            }
-            else{
-                break;
+            if(curr*10<=n){
+                curr*=10;
+            }else{
+                while(curr%10==9 || curr>=n){
+                    curr/=10;
+                }
+                curr++;
             }
         }
+        return lexi;
     }
 };
