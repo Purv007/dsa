@@ -1,72 +1,88 @@
-class TrieNode {
-public:
-    // Each node has up to 10 possible children (digits 0-9)
+class TrieNode{
+    public:
+    int data;
     TrieNode* children[10];
-    TrieNode() {
-        for (int i = 0; i < 10; ++i) {
-            children[i] = nullptr;
+    int childCount;
+
+    TrieNode(int d){
+        data=d;
+        for(int i=0;i<10;i++){
+            children[i]=NULL;
         }
+        childCount=0;
     }
 };
 
-class Trie {
-public:
+class Trie{
+    public:
     TrieNode* root;
-
-    Trie() { root = new TrieNode(); }
-
-    // Insert a number into the Trie by treating it as a string of digits
-    void insert(int num) {
-        TrieNode* node = root;
-        string numStr = to_string(num);
-        for (char digit : numStr) {
-            int idx = digit - '0';
-            if (!node->children[idx]) {
-                node->children[idx] = new TrieNode();
-            }
-            node = node->children[idx];
-        }
+    Trie(){
+        root=new TrieNode('\0');
     }
 
-    // Find the longest common prefix for a number in arr2 with the Trie
-    int findLongestPrefix(int num) {
-        TrieNode* node = root;
-        string numStr = to_string(num);
-        int len = 0;
+    void insertUtil(TrieNode* root,string word){
+        //base case
+        if(word.length()==0){
+            return ;
+        }
 
-        for (char digit : numStr) {
-            int idx = digit - '0';
-            if (node->children[idx]) {
-                // Increase length if the current digit matches
+        //assumption : only capital letters
+        int index=word[0]-'0';
+        TrieNode* child;
+
+        //present
+        if(root->children[index] !=NULL){
+            child = root->children[index];
+        }
+        else{
+            //absent
+            child=new TrieNode(word[0]);
+            root->childCount++;
+            root->children[index]=child;
+        }
+
+        //recursion
+        insertUtil(child,word.substr(1));
+    }
+
+    void insertWord(int num){
+        string word=to_string(num);
+        insertUtil(root,word);
+    }
+
+    int findlcp(int n){
+        TrieNode* node=root;
+        string numStr=to_string(n);
+        int len=0;
+
+        for(char digit:numStr){
+            int index=digit-'0';
+            if(node->children[index]){
                 len++;
-                node = node->children[idx];
-            } else {
-                // Stop if no match for the current digit
+                node=node->children[index];
+            }
+            else{
                 break;
             }
         }
         return len;
     }
 };
-
 class Solution {
 public:
     int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
-        Trie trie;
+        Trie* t=new Trie();
 
-        // Step 1: Insert all numbers from arr1 into the Trie
-        for (int num : arr1) {
-            trie.insert(num);
+        for(auto i:arr1){
+            t->insertWord(i);
         }
 
-        int longestPrefix = 0;
+        int lcp=0;
 
-        // Step 2: Find the longest prefix match for each number in arr2
-        for (int num : arr2) {
-            int len = trie.findLongestPrefix(num);
-            longestPrefix = max(longestPrefix, len);
+        for(int num:arr2){
+            int len=t->findlcp(num);
+            lcp=max(len,lcp);
         }
-
-        return longestPrefix;
+        return lcp;
     }
 };
