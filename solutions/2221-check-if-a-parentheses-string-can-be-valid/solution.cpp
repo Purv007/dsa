@@ -1,42 +1,46 @@
 class Solution {
 public:
     bool canBeValid(string s, string locked) {
-        int length = s.size();
-        // If length of string is odd, return false.
-        if (length % 2 == 1) {
-            return false;
-        }
+        int n = s.length();
+        if (n % 2 == 1) return false;
 
-        stack<int> openBrackets, unlocked;
+        int open = 0, unlocked = 0;
 
-        // Iterate through the string to handle '(' and ')'
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < n; i++) {
             if (locked[i] == '0') {
-                unlocked.push(i);
+                unlocked++;
             } else if (s[i] == '(') {
-                openBrackets.push(i);
-            } else if (s[i] == ')') {
-                if (!openBrackets.empty()) {
-                    openBrackets.pop();
-                } else if (!unlocked.empty()) {
-                    unlocked.pop();
+                open++;
+            } else {
+                if (open > 0) {
+                    open--; 
+                } else if (unlocked > 0) {
+                    unlocked--;
                 } else {
                     return false;
                 }
             }
         }
 
-        // Match remaining open brackets with unlocked characters
-        while (!openBrackets.empty() && !unlocked.empty() &&
-               openBrackets.top() < unlocked.top()) {
-            openBrackets.pop();
-            unlocked.pop();
-        }
-
-        if (!openBrackets.empty()) {
-            return false;
+        int close = 0;
+        unlocked = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            if (locked[i] == '0') {
+                unlocked++;
+            } else if (s[i] == ')') {
+                close++;
+            } else { 
+                if (close > 0) {
+                    close--;
+                } else if (unlocked > 0) {
+                    unlocked--;
+                } else {
+                    return false;
+                }
+            }
         }
 
         return true;
     }
 };
+
