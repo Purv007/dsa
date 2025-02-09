@@ -1,35 +1,22 @@
 class Solution {
 public:
     int tupleSameProduct(vector<int>& nums) {
-        int numsLength = nums.size();
+        int n=nums.size();
+        unordered_map<int,int>mulPairs;
+        int res=0;
 
-        // Initialize an unordered map to store the frequency of each product of
-        // pairs
-        unordered_map<int, int> pairProductsFrequency;
-
-        int totalNumberOfTuples = 0;
-
-        // Iterate through each pair of numbers in `nums`
-        for (int firstIndex = 0; firstIndex < numsLength; firstIndex++) {
-            for (int secondIndex = firstIndex + 1; secondIndex < numsLength;
-                 secondIndex++) {
-                // Increment the frequency of the product of the current pair
-                pairProductsFrequency[nums[firstIndex] * nums[secondIndex]]++;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                mulPairs[nums[i]*nums[j]]++;
             }
         }
-
-        // Iterate through each product value and its frequency in the map
-        for (auto [productValue, productFrequency] : pairProductsFrequency) {
-            // Calculate the number of ways to choose two pairs with the same
-            // product
-            int pairsOfEqualProduct =
-                (productFrequency - 1) * productFrequency / 2;
-
-            // Add the number of tuples for this product to the total (each pair
-            // can form 8 tuples)
-            totalNumberOfTuples += 8 * pairsOfEqualProduct;
+        
+        for(auto [i,j]:mulPairs)
+        {
+            if(j>1)
+                res+=(j*(j-1)/2);   
         }
 
-        return totalNumberOfTuples;
+        return res*8;
     }
 };
