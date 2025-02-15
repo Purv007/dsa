@@ -1,44 +1,31 @@
 class Solution {
-private:
-    // Helper function to compute the sum of digits of a number
-    int calculateDigitSum(int num) {
-        int digitSum = 0;
-        while (num > 0) {
-            digitSum += num % 10;
-            num /= 10;
-        }
-        return digitSum;
-    }
-
 public:
     int maximumSum(vector<int>& nums) {
-        // Vector to store a min heap for each possible digit sum (0 to 81)
-        vector<priority_queue<int, vector<int>, greater<int>>> digitSumGroups(
-            82);
-
-        int maxPairSum = -1;
-
-        // Group numbers by their digit sums, maintaining heap size of 2
-        for (int number : nums) {
-            int digitSum = calculateDigitSum(number);
-            digitSumGroups[digitSum].push(number);
-
-            // Keep only the top 2 largest numbers in the heap
-            if (digitSumGroups[digitSum].size() > 2) {
-                digitSumGroups[digitSum].pop();  // Remove the smallest element
+        vector<priority_queue<int, vector<int>, greater<int>>>count(82);
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            int sum=0;
+            int t=nums[i];
+            while(t>0){
+                sum+=t%10;
+                t/=10;
+            }
+            count[sum].push(nums[i]);
+            if(count[sum].size()>2){
+                count[sum].pop();
             }
         }
 
-        // Traverse the vector to find the maximum pair sum for each group
-        for (auto& minHeap : digitSumGroups) {
-            if (minHeap.size() == 2) {
-                int first = minHeap.top();
-                minHeap.pop();
-                int second = minHeap.top();
-                maxPairSum = max(maxPairSum, first + second);
+        int res=-1;
+
+        for(auto i:count){
+            if(i.size()==2){
+                int top=i.top();
+                i.pop();
+                int top2=i.top();
+                res=max(res,top+top2);
             }
         }
-
-        return maxPairSum;
+        return res;
     }
 };
