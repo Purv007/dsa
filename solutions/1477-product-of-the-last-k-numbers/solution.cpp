@@ -1,3 +1,34 @@
+// class ProductOfNumbers {
+// public:
+//     vector<long long>preMul;
+//     long long size=0;
+//     long long zero=-1;
+//     ProductOfNumbers() {
+//         preMul.push_back(1);
+//     }
+    
+//     void add(int num) {
+//         if(num==0){
+//             preMul.push_back(preMul[size]*(long long)1);
+//             zero=size;
+//             size++;
+//         }else{
+//             preMul.push_back(preMul[size++]*(long long)num);
+//         }
+//     }
+    
+//     int getProduct(int k) {
+//         if((zero!=-1) && (k>=(size-zero))) return 0;
+//         return preMul[size]/preMul[size-k];
+//     }
+// };
+
+// /**
+//  * Your ProductOfNumbers object will be instantiated and called as such:
+//  * ProductOfNumbers* obj = new ProductOfNumbers();
+//  * obj->add(num);
+//  * int param_2 = obj->getProduct(k);
+//  */
 class ProductOfNumbers {
 private:
     // Stores cumulative product of the stream
