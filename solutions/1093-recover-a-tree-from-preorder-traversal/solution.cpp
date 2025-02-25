@@ -11,51 +11,55 @@
  */
 class Solution {
 public:
-    void func(TreeNode* &root,int num,int dash){
-        TreeNode* nn=new TreeNode(num);
-        if(root==NULL) {
-            root=nn;
-            return;
-        }
-        TreeNode* temp=root;
-        for(int i=0;i<dash-1;i++){
-            if(temp->right){
-                temp=temp->right;
-            }
-            else if(temp->left){
-                temp=temp->left;
-            }
-            else return;
-        }
-        if(temp->left == nullptr) {
-            temp->left = nn;
-        } else {
-            temp->right = nn;
-        }
-    }
     TreeNode* recoverFromPreorder(string t) {
-        TreeNode* root=NULL;
+        stack<TreeNode*>s;
+        int index=0;
         int n=t.size();
-        int count=0;
-        string temp="";
-        for(int i=0;i<n;i++){
-            if(isdigit(t[i])){
-                temp+=t[i];
-                if(i+1<n && t[i+1]=='-'){
-                    func(root,stoi(temp),count);
-                    count=0;
-                    temp="";
-                }
+        while(index<n){
+            int dash=0;
+            while(index<n && t[index]=='-'){
+                dash++;
+                index++;
+            }
+
+            int value=0;
+            while(index<n && isdigit(t[index])){
+                value=value*10+(t[index]-'0');
+                index++;
+            }
+
+            TreeNode* node=new TreeNode(value);
+            if(s.empty()){
+                s.push(node);
+            }
+            else if(s.size()<=dash){
+                s.push(node);
             }
             else{
-                count++;
+                while(s.size()>dash){
+                    TreeNode* temp=s.top();
+                    s.pop();
+                    TreeNode* curr=s.top();
+                    if(!curr->left){
+                        curr->left=temp;
+                    }else{
+                        curr->right=temp;
+                    }
+                }
+                s.push(node);
             }
         }
 
-        if (!temp.empty()) {
-            func(root, stoi(temp), count);
+        while(s.size()>1){
+            TreeNode* temp=s.top();
+            s.pop();
+            TreeNode* curr=s.top();
+            if(!curr->left){
+                curr->left=temp;
+            }else{
+                curr->right=temp;
+            }
         }
-
-        return root;
+        return s.top();
     }
 };
