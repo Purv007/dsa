@@ -1,21 +1,22 @@
 class Solution {
 public:
     vector<int> lexicalOrder(int n) {
-        vector<int>lexi;
+        vector<int>res;
         int curr=1;
 
         for(int i=0;i<n;i++){
-            lexi.push_back(curr);
+            res.push_back(curr);
 
             if(curr*10<=n){
                 curr*=10;
-            }else{
+            }
+            else{
                 while(curr%10==9 || curr>=n){
                     curr/=10;
                 }
                 curr++;
             }
         }
-        return lexi;
+        return res;
     }
 };
