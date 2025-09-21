@@ -1,17 +1,15 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
-        if(s1.length()>s2.length()) return false;
-        s1 = sortString(s1);
-        for (int i = 0; i <= s2.length() - s1.length(); i++) {
-            if (s1 == sortString(s2.substr(i, s1.length())))
-                return true;
+        sort(s1.begin(),s1.end());
+        int n=s1.size(),m=s2.size();
+
+        for(int i=0;i<=m-n;i++){
+            string nn=s2.substr(i,n);
+            sort(nn.begin(),nn.end());
+            if(nn==s1) return true;
         }
+
         return false;
-    }
-    
-    string sortString(string s) {
-        sort(s.begin(), s.end());
-        return s;
     }
 };
