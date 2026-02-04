@@ -11,23 +11,24 @@
  */
 class Solution {
 public:
+    unordered_map<int,int>m;
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         int n=inorder.size();
-        unordered_map<int,int> mp;
-        for(int i=0;i<inorder.size();i++){
-            mp[inorder[i]]=i;
+        for(int i=0;i<n;i++){
+            m[inorder[i]]=i;
         }
-        TreeNode* root=recur(mp,inorder,0,n-1,postorder,0,n-1);
-        return root;
+        return func(inorder,postorder,0,n-1,0,n-1);
     }
-    TreeNode* recur(unordered_map<int,int> &mp,vector<int>&inorder,int ins,int ine,vector<int>&postorder,int pos,int poe){
-        if(ins>ine || pos>poe) return NULL;
+    TreeNode* func(vector<int>&in,vector<int>&post,int li,int ri,int lp,int rp){
+        if(li>ri || lp>rp) return NULL;
 
-        TreeNode* root=new TreeNode(postorder[poe]);
-        int mid=mp[postorder[poe]];
-        int remaining=mid-ins;
-        root->left=recur(mp,inorder,ins,mid-1,postorder,pos,pos+remaining-1);
-        root->right=recur(mp,inorder,mid+1,ine,postorder,pos+remaining,poe-1);
+        int val=post[rp];
+        TreeNode* root=new TreeNode(val);
+        int mid=m[val];
+        int left=mid-li;
+
+        root->left=func(in,post,li,mid-1,lp,lp+left-1);
+        root->right=func(in,post,mid+1,ri,lp+left,rp-1);
         return root;
     }
 };
