@@ -12,15 +12,17 @@
 class Solution {
 public:
     TreeNode* bstToGst(TreeNode* root) {
-        updateTree(root,0);
+        func(root,0);
         return root;
     }
-    int updateTree(TreeNode* &root,int valueFromparent){
-        if(root==NULL) return 0;
-        int sumRight=updateTree(root->right,valueFromparent);
-        int sumLeft=updateTree(root->left,root->val+sumRight+valueFromparent);
-        int total=root->val+sumRight+sumLeft;
-        root->val=valueFromparent+root->val+sumRight;
+    int func(TreeNode* root,int valParent){
+        if(!root){
+            return 0;
+        }
+        int right=func(root->right,valParent);
+        int left=func(root->left,root->val+valParent+right);
+        int total=root->val+left+right;
+        root->val=valParent+root->val+right;
         return total;
     }
 };
