@@ -11,16 +11,31 @@
  */
 class Solution {
 public:
-    void func(TreeNode* root,vector<int>& res){
-        if(!root) return;
-        func(root->left,res);
-        res.push_back(root->val);
-        func(root->right,res);
-        return;
-    }
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int>res;
-        func(root,res);
+        vector<int> res;
+        TreeNode* curr=root;
+
+        while(curr!=NULL){
+            if(curr->left==NULL){
+                res.push_back(curr->val);
+                curr=curr->right;
+            }
+            else{
+                TreeNode* ip=curr->left;
+                while(ip->right!=NULL && ip->right!=curr){
+                    ip=ip->right;
+                }
+                if(!ip->right){
+                    ip->right=curr;
+                    curr=curr->left;
+                }
+                else{
+                    res.push_back(curr->val);
+                    ip->right=NULL;
+                    curr=curr->right;
+                }
+            }
+        }
         return res;
     }
 };
