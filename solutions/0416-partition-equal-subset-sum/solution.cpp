@@ -1,15 +1,23 @@
 class Solution {
 public:
     bool canPartition(vector<int>& nums) {
-        int totalSum = accumulate(begin(nums), end(nums), 0), halfSum = totalSum / 2;
-        if(totalSum & 1) return false;
-        bool dp[halfSum+1]; memset(dp, false, sizeof dp);
-        dp[0] = true;                              // 0 sum is always achievable
-        for(int num : nums) 
-            for(int j = halfSum; j >= num; j--)    // essential to start right to left
-                if(dp[j - num])                    // if j - num was previously achievable
-                    dp[j] = true;                  // we can add num to it and make j achievable as well
-            
-        return dp[halfSum];
+        int sum=0;
+        for(auto i:nums) sum+=i;
+
+        if(sum%2==1) return false;
+        int t=sum/2;
+        vector<vector<int>>dp(nums.size()+1,vector<int>(t,-1));
+        return func(0,t,0,dp,nums);
+    }
+
+    bool func(int idx,int target,int sum,vector<vector<int>>&dp,vector<int>& nums){
+        if(target==sum) return true;
+        if(idx==nums.size()-1) return false;
+        if(dp[idx][sum]!=-1) return dp[idx][sum];
+
+        if(nums[idx]+sum>target) return func(idx+1,target,sum,dp,nums);
+        int take=func(idx+1,target,sum+nums[idx],dp,nums);
+        int leave=func(idx+1,target,sum,dp,nums);
+        return dp[idx][sum]=take||leave;
     }
 };
