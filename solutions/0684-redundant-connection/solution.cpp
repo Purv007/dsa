@@ -1,44 +1,43 @@
 class Solution {
 public:
-int cyclestart=-1;
+    bool isConnected(int src, int target, vector<vector<int>>& adj) {
+        int n = adj.size();
+        vector<bool> visited(n, false);
 
-    void dfs(int src, vector<bool> &visited, vector<int> adj[],
-             vector<int> &parent){
-                visited[src]=true;
+        queue<int> q;
+        q.push(src);
+        visited[src] = true;
 
-                for(int i:adj[src]){
-                    if(!visited[i]){
-                        parent[i]=src;
-                        dfs(i,visited,adj,parent);
-                    }else if(i!=parent[src] && cyclestart==-1){
-                        cyclestart=i;
-                        parent[i]=src;
-                    }
+        while (!q.empty()) {
+            int node = q.front();
+            q.pop();
+
+            if (node == target) return true;
+
+            for (int nei : adj[node]) {
+                if (!visited[nei]) {
+                    visited[nei] = true;
+                    q.push(nei);
                 }
-             }
+            }
+        }
+        return false;
+    }
 
     vector<int> findRedundantConnection(vector<vector<int>>& edges) {
-        int n=edges.size();
-        vector<bool>visited(n,false);
-        vector<int>parent(n,-1);
+        int n = edges.size();
+        vector<vector<int>> adj(n);
 
-        vector<int>adj[n];
-        for(auto i:edges){
-            adj[i[0]-1].push_back(i[1]-1);
-            adj[i[1]-1].push_back(i[0]-1);
-        }
+        for (auto &e : edges) {
+            int u = e[0] - 1;
+            int v = e[1] - 1;
 
-        dfs(0,visited,adj,parent);
+            if (isConnected(u, v, adj)) {
+                return e;
+            }
 
-        unordered_map<int,int>cycleNodes;
-        int node=cyclestart;
-        do{
-            cycleNodes[node]=1;
-            node=parent[node];
-        }while(node!=cyclestart);
-
-        for(int i=n-1;i>=0;i--){
-            if(cycleNodes[edges[i][0]-1] && cycleNodes[edges[i][1]-1]) return edges[i];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
         }
         return {};
     }
