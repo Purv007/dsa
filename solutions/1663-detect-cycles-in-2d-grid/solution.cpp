@@ -1,52 +1,62 @@
 class Solution {
 public:
-int n,m;
-vector<pair<int,int>> dir={{1,0},{-1,0},{0,1},{0,-1}};
+    int n, m;
+    vector<int> parent, rank;
 
-    bool bfs(int i,int j,vector<vector<char>>& grid,vector<vector<bool>>&vis){
-        queue<pair<pair<int,int>,pair<int,int>>>q;
-        q.push({{i,j},{-1,-1}});
-        vis[i][j]=true;
+    int find(int x) {
+        if (parent[x] != x)
+            parent[x] = find(parent[x]);
+        return parent[x];
+    }
 
-        while(!q.empty()){
-            auto [node,parent]=q.front();
-            q.pop();
+    bool unite(int x, int y) {
+        int px = find(x);
+        int py = find(y);
 
-            auto [i,j]=node;
-            char val=grid[i][j];
-
-            for(auto [dx,dy]:dir){
-                int x=i+dx;
-                int y=j+dy;
-
-                if(x>=0 && y>=0 && x<n && y<m && grid[x][y]==val){
-                    pair<int,int>nei={x,y};
-
-                    if(!vis[x][y]){
-                        vis[x][y]=true;
-                        q.push({nei,node});
-                    }
-                    else if(nei!=parent) return true;
-                }
-            }
+        if (px == py){
+            return true;
         }
 
+        if (rank[px] < rank[py])
+            parent[px] = py;
+        else if (rank[px] > rank[py])
+            parent[py] = px;
+        else {
+            parent[py] = px;
+            rank[px]++;
+        }
         return false;
     }
 
     bool containsCycle(vector<vector<char>>& grid) {
-        this->n=grid.size();
-        this->m=grid[0].size();
-        vector<vector<bool>>vis(n,vector<bool>(m,false));
+        n = grid.size();
+        m = grid[0].size();
 
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(!vis[i][j] && bfs(i,j,grid,vis)){
-                    return true;
+        parent.resize(n * m);
+        rank.resize(n * m, 0);
+
+        for (int i = 0; i < n * m; i++)
+            parent[i] = i;
+
+        vector<pair<int,int>> dir = {{0,1}, {1,0}};
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+
+                for (auto [dx, dy] : dir) {
+                    int x = i + dx;
+                    int y = j + dy;
+
+                    if (x < n && y < m && grid[i][j] == grid[x][y]) {
+                        int id1 = i * m + j;
+                        int id2 = x * m + y;
+
+                        if (unite(id1, id2))
+                            return true;
+                    }
                 }
             }
         }
-
         return false;
     }
 };
