@@ -1,46 +1,66 @@
 class Solution {
 public:
-    int numIslands(vector<vector<char>>& grid){
-        int rows=grid.size();
-        int cols=grid[0].size();
-        
-        vector<vector<bool>>visited(rows,vector<bool>(cols,false));
-        int islands=0;
-
-        for(int i=0;i<rows;i++){
-            for(int j=0;j<cols;j++){
-                if(grid[i][j]=='1' && !visited[i][j]){
-                    bfs(grid,visited,i,j);
-                    islands++;
-                }
-            }
-        }
-        return islands;
+vector<int> size,parent;
+    int find(int x){
+        if(x==parent[x]) return x;
+        return parent[x]=find(parent[x]);
     }
 
-    void bfs(vector<vector<char>>& grid,vector<vector<bool>>&visited,int x,int y){
-        int rows=grid.size();
-        int cols=grid[0].size();
-        queue<pair<int,int>>q;
-        q.push({x,y});
-        visited[x][y]=true;
+    bool unite(int x,int y){
+        int px=find(x);
+        int py=find(y);
 
-        vector<pair<int,int>>dir={{0,1},{1,0},{0,-1},{-1,0}};
+        if(px==py) return false;
+        if(size[px]>size[py]){
+            parent[py]=px;
+            size[px]+=size[py];
+        }
+        else{
+            parent[px]=py;
+            size[py]+=size[px];
+        }
+        return true;
+    }
 
-        while(!q.empty()){
-            auto[curX,curY]=q.front();
-            q.pop();
+    int numIslands(vector<vector<char>>& grid) {
+        int n=grid.size();
+        int m=grid[0].size();
+        parent.resize(n*m);
+        size.resize(n*m,1);
 
-            for(auto[dx,dy]:dir){
-                int newX=curX+dx;
-                int newY=curY+dy;
+        for (int i = 0; i < n*m; i++) {
+            parent[i]=i;
+        }
 
-                if(newX>=0 && newX<rows && newY>=0 && newY<cols && grid[newX][newY]=='1' &&
-                !visited[newX][newY]){
-                    visited[newX][newY]=true;
-                    q.push({newX,newY});
+        int res=0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == '1') res++;
+            }
+        }
+
+        vector<pair<int,int>> dir = {{0,1},{1,0}};
+
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]=='0') continue;
+
+                int node=i*m + j;
+
+                for(auto [dx,dy]:dir){
+                    int ni = i + dx;
+                    int nj = j + dy;
+
+                    if (ni < n && nj < m && grid[ni][nj] == '1') {
+                        int adj = ni * m + nj;
+                        if (find(node) != find(adj)) {
+                            unite(node, adj);
+                            res--;
+                        }
+                    }
                 }
             }
         }
+        return res;
     }
 };
