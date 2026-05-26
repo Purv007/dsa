@@ -1,43 +1,43 @@
 class Solution {
 public:
-    bool isConnected(int src, int target, vector<vector<int>>& adj) {
-        int n = adj.size();
-        vector<bool> visited(n, false);
+vector<int> parent,size;
+    int find(int x){
+        if(x==parent[x]) return x;
+        return parent[x]=find(parent[x]);
+    }
 
-        queue<int> q;
-        q.push(src);
-        visited[src] = true;
+    bool unite(int x,int y){
+        int px=find(x);
+        int py=find(y);
 
-        while (!q.empty()) {
-            int node = q.front();
-            q.pop();
-
-            if (node == target) return true;
-
-            for (int nei : adj[node]) {
-                if (!visited[nei]) {
-                    visited[nei] = true;
-                    q.push(nei);
-                }
-            }
+        if(px==py) return false;
+        if(size[px]>size[py]){
+            parent[py]=px;
+            size[px]+=size[py];
         }
-        return false;
+        else{
+            parent[px]=py;
+            size[py]+=size[px];
+        }
+        return true;
     }
 
     vector<int> findRedundantConnection(vector<vector<int>>& edges) {
-        int n = edges.size();
-        vector<vector<int>> adj(n);
+        int n=edges.size();
+        parent.resize(n);
+        size.resize(n,1);
 
-        for (auto &e : edges) {
-            int u = e[0] - 1;
-            int v = e[1] - 1;
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
 
-            if (isConnected(u, v, adj)) {
-                return e;
+        for(auto &i:edges){
+            int a=i[0]-1;
+            int b=i[1]-1;
+
+            if(!unite(a,b)){
+                return i;
             }
-
-            adj[u].push_back(v);
-            adj[v].push_back(u);
         }
         return {};
     }
