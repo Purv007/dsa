@@ -1,13 +1,26 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
-        sort(s1.begin(),s1.end());
-        int n=s1.size(),m=s2.size();
+        if (s1.size() > s2.size())
+            return false;
 
-        for(int i=0;i<=m-n;i++){
-            string nn=s2.substr(i,n);
-            sort(nn.begin(),nn.end());
-            if(nn==s1) return true;
+        vector<int> a(26, 0), b(26, 0);
+
+        for (char c : s1)
+            a[c - 'a']++;
+
+        for (int i = 0; i < s1.size(); i++)
+            b[s2[i] - 'a']++;
+
+        if (a == b)
+            return true;
+
+        for (int i = s1.size(); i < s2.size(); i++) {
+            b[s2[i] - 'a']++;
+            b[s2[i - s1.size()] - 'a']--;
+
+            if (a == b)
+                return true;
         }
 
         return false;
