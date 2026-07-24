@@ -1,41 +1,33 @@
 class Solution {
 public:
-    void func(vector<char>& c,int& d,int count,int l){
-        while(count!=0){
-            int a=count%10;
-            count/=10;
-            c[d+l]=a+'0';
-            l--;
-        }
-    }
     int compress(vector<char>& chars) {
         int res=0;
-        char c=chars[0];
+        int n=chars.size();
         int count=0;
-        for(auto i:chars){
-            if(i==c){
+        char c=chars[0];
+        for(int i=0;i<n;i++){
+            if(chars[i]==c){
                 count++;
+                continue;
             }
-            else{
                 chars[res++]=c;
-                if(count>1){
+                if(count>1) {
                     string s=to_string(count);
-                    for(auto a:s){
-                        chars[res++]=a;
+                    for(auto k:s){
+                        chars[res++]=k;
                     }
                 }
-                c=i;
+                c=chars[i];
                 count=1;
-            }
+            
         }
         chars[res++]=c;
-        if(count>1){
-            string s=to_string(count);
-            for(auto a:s){
-                chars[res++]=a;
-            }
-        }
-
+                if(count>1) {
+                    string s=to_string(count);
+                    for(auto k:s){
+                        chars[res++]=k;
+                    }
+                }
         return res;
     }
 };
