@@ -1,23 +1,22 @@
 class Solution {
 public:
     vector<vector<int>>res;
-    void func(vector<int>& candidates, int target,vector<int>&curr,int ind){
-        if(target==0){
+    void recur(vector<int>&can,int t,vector<int>&curr,int sum,int i){
+        if(sum==t){
             res.push_back(curr);
             return;
         }
-        if(ind>=candidates.size() ||target<0) return;
+        if(sum>t || i>=can.size()) return;
 
-        curr.push_back(candidates[ind]);
-        func(candidates,target-candidates[ind],curr,ind);
+        curr.push_back(can[i]);
+        recur(can,t,curr,sum+can[i],i);
         curr.pop_back();
-        func(candidates,target,curr,ind+1);
+        recur(can,t,curr,sum,i+1);
     }
-
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<vector<int>> combinationSum(vector<int>& can, int target) {
+        int n=can.size();
         vector<int>temp;
-        res.clear();
-        func(candidates,target,temp,0);
+        recur(can,target,temp,0,0);
         return res;
     }
 };
