@@ -1,40 +1,35 @@
 class Solution {
 public:
-    vector<vector<int>>dp;
     vector<vector<string>>res;
-    vector<string>path;
 
-    void solve(string &s,int st){
-        if(st==s.size()){
-            res.push_back(path);
+    bool pal(string s){
+        int n=s.size()/2 +1;
+        for(int i=0;i<n;i++){
+            if(s[i]!=s[s.size()-i-1]) return false;
+        }
+        return true;
+    }
+
+    void recur(string s,int i,vector<string>&t){
+        if(i==s.size()){
+            res.push_back(t);
             return;
         }
 
-        for(int i=st;i<s.size();i++){
-            if(dp[st][i]){
-                path.push_back(s.substr(st,i-st+1));
-                solve(s,i+1);
-                path.pop_back();
+        for(int k=i;k<s.size();k++){
+            string a=s.substr(i,k-i+1);
+            if(pal(a)){
+                t.push_back(a);
+                recur(s,k+1,t);
+                t.pop_back();
             }
         }
     }
+
     vector<vector<string>> partition(string s) {
         int n=s.size();
-        dp.resize(n,vector<int>(n,0));
-
-        for (int i = 0; i < n; ++i) {
-            dp[i][i] = true;
-        }
-        for(int len=2;len<=n;len++){
-            for(int i=0;i<=n-len;i++){
-                int j=i+len-1;
-                if(s[i]==s[j] && (len==2 || dp[i+1][j-1])){
-                    dp[i][j]=1;
-                }
-            }
-        }
-        
-        solve(s,0);
+        vector<string>t;
+        recur(s,0,t);
         return res;
-    }
+    }   
 };
