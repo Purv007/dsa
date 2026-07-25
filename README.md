@@ -27,3 +27,15 @@ This repo uses a GitHub Action that runs **every 6 hours** to pull any new submi
 ### Workflow Permissions
 
 Go to **Settings → Actions → General → Workflow permissions** and select **Read and write permissions**.
+
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## Array
+|  |
+| ------- |
+| [0001-two-sum](https://github.com/Purv007/dsa/tree/master/0001-two-sum) |
+## Hash Table
+|  |
+| ------- |
+| [0001-two-sum](https://github.com/Purv007/dsa/tree/master/0001-two-sum) |
+<!---LeetCode Topics End-->
