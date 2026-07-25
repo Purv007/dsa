@@ -3,7 +3,7 @@ name: Sync Leetcode
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *" # Runs every 6 hours to keep contributions active
+    - cron: "0 0 * * *" # Runs every day at midnight to keep contributions active
 
 jobs:
   build:
