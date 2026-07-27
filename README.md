@@ -12,13 +12,23 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Array
 |  |
 | ------- |
+| [0037-sudoku-solver](https://github.com/Purv007/dsa/tree/master/0037-sudoku-solver) |
 | [0090-subsets-ii](https://github.com/Purv007/dsa/tree/master/0090-subsets-ii) |
 ## Backtracking
 |  |
 | ------- |
+| [0037-sudoku-solver](https://github.com/Purv007/dsa/tree/master/0037-sudoku-solver) |
 | [0090-subsets-ii](https://github.com/Purv007/dsa/tree/master/0090-subsets-ii) |
 ## Bit Manipulation
 |  |
 | ------- |
 | [0090-subsets-ii](https://github.com/Purv007/dsa/tree/master/0090-subsets-ii) |
+## Hash Table
+|  |
+| ------- |
+| [0037-sudoku-solver](https://github.com/Purv007/dsa/tree/master/0037-sudoku-solver) |
+## Matrix
+|  |
+| ------- |
+| [0037-sudoku-solver](https://github.com/Purv007/dsa/tree/master/0037-sudoku-solver) |
 <!---LeetCode Topics End-->
