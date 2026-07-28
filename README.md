@@ -36,4 +36,16 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [3193-count-the-number-of-inversions](https://github.com/Purv007/dsa/tree/master/3193-count-the-number-of-inversions) |
+## Stack
+|  |
+| ------- |
+| [0225-implement-stack-using-queues](https://github.com/Purv007/dsa/tree/master/0225-implement-stack-using-queues) |
+## Design
+|  |
+| ------- |
+| [0225-implement-stack-using-queues](https://github.com/Purv007/dsa/tree/master/0225-implement-stack-using-queues) |
+## Queue
+|  |
+| ------- |
+| [0225-implement-stack-using-queues](https://github.com/Purv007/dsa/tree/master/0225-implement-stack-using-queues) |
 <!---LeetCode Topics End-->
