@@ -14,6 +14,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0037-sudoku-solver](https://github.com/Purv007/dsa/tree/master/0037-sudoku-solver) |
 | [0090-subsets-ii](https://github.com/Purv007/dsa/tree/master/0090-subsets-ii) |
+| [3193-count-the-number-of-inversions](https://github.com/Purv007/dsa/tree/master/3193-count-the-number-of-inversions) |
 ## Backtracking
 |  |
 | ------- |
@@ -31,4 +32,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0037-sudoku-solver](https://github.com/Purv007/dsa/tree/master/0037-sudoku-solver) |
+## Dynamic Programming
+|  |
+| ------- |
+| [3193-count-the-number-of-inversions](https://github.com/Purv007/dsa/tree/master/3193-count-the-number-of-inversions) |
 <!---LeetCode Topics End-->
