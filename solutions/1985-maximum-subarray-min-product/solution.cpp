@@ -2,35 +2,29 @@ class Solution {
 public:
     int maxSumMinProduct(vector<int>& nums) {
         const long long MOD = 1e9 + 7;
-        int n = nums.size();
-
-        // Prefix sum
-        vector<long long> pre(n + 1, 0);
-        for (int i = 0; i < n; i++) {
-            pre[i + 1] = pre[i] + nums[i];
+        int n=nums.size();
+        vector<long long>pre(n+1,0);
+        for(int i=0;i<n;i++){
+            pre[i+1]=pre[i]+nums[i];
         }
 
-        stack<int> st;
-        long long ans = 0;
+        stack<int>s;
+        long long res=0;
 
-        for (int i = 0; i <= n; i++) {
-            long long curr = (i < n) ? nums[i] : 0;
+        for(int i=0;i<=n;i++){
+            long long curr=(i<n)?nums[i]:0;
 
-            while (!st.empty() && nums[st.top()] > curr) {
-                int mid = st.top();
-                st.pop();
+            while(!s.empty() && nums[s.top()]>curr){
+                int mid=s.top();
+                s.pop();
+                int l=s.empty()?0:s.top()+1;
+                int r=i-1;
 
-                int left = st.empty() ? 0 : st.top() + 1;
-                int right = i - 1;
-
-                long long sum = pre[right + 1] - pre[left];
-                ans = max(ans, sum * nums[mid]);
+                long long temp=pre[r+1]-pre[l];
+                res=max(res,temp*nums[mid]);
             }
-
-            st.push(i);
+            s.push(i);
         }
-
-        return ans % MOD;
+        return res%MOD;
     }
 };
-
