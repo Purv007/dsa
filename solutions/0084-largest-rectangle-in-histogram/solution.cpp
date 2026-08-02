@@ -16,6 +16,7 @@ public:
                 res=max(res,h[mid]*(r-l+1));
             }
             s.push(i);
+
         }
         return res;
     }
