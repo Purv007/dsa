@@ -12,7 +12,7 @@
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> res;
+        vector<int>res;
         TreeNode* curr=root;
 
         while(curr!=NULL){
