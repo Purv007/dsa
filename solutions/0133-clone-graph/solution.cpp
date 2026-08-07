@@ -21,31 +21,31 @@ public:
 
 class Solution {
 public:
-    Node* dfs(Node* cur,unordered_map<Node*,Node*>&m){
-        vector<Node*>neighbor;
-        Node*clone=new Node(cur->val);
-        m[cur]=clone;
-        for(auto i:cur->neighbors){
-            if(m.find(i)!=m.end()){
-                neighbor.push_back(m[i]);
-            }
-            else{
-                neighbor.push_back(dfs(i,m));
-            }
-        }
-        clone->neighbors=neighbor;
-        return clone;
-    }
-
     Node* cloneGraph(Node* node) {
+        if(!node) return nullptr;
         unordered_map<Node*,Node*>m;
-        if(!node){
-            return NULL;
-        }
+
         if(node->neighbors.size()==0){
-            Node* clone=new Node(node->val);
-            return clone;
+            Node* n=new Node(node->val);
+            return n;
         }
         return dfs(node,m);
+    }
+
+    Node* dfs(Node* curr,unordered_map<Node*,Node*>&m){
+        vector<Node*>neigh;
+        Node* clone=new Node(curr->val);
+        m[curr]=clone;
+
+        for(auto i:curr->neighbors){
+            if(m.find(i)==m.end()){
+                neigh.push_back(dfs(i,m));
+            }
+            else{
+                neigh.push_back(m[i]);
+            }
+        }
+        clone->neighbors=neigh;
+        return clone;
     }
 };
