@@ -14,6 +14,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0037-sudoku-solver](https://github.com/Purv007/dsa/tree/master/0037-sudoku-solver) |
 | [0090-subsets-ii](https://github.com/Purv007/dsa/tree/master/0090-subsets-ii) |
+| [1559-detect-cycles-in-2d-grid](https://github.com/Purv007/dsa/tree/master/1559-detect-cycles-in-2d-grid) |
 | [3193-count-the-number-of-inversions](https://github.com/Purv007/dsa/tree/master/3193-count-the-number-of-inversions) |
 ## Backtracking
 |  |
@@ -32,6 +33,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0037-sudoku-solver](https://github.com/Purv007/dsa/tree/master/0037-sudoku-solver) |
+| [1559-detect-cycles-in-2d-grid](https://github.com/Purv007/dsa/tree/master/1559-detect-cycles-in-2d-grid) |
 ## Dynamic Programming
 |  |
 | ------- |
@@ -52,14 +54,17 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0684-redundant-connection](https://github.com/Purv007/dsa/tree/master/0684-redundant-connection) |
+| [1559-detect-cycles-in-2d-grid](https://github.com/Purv007/dsa/tree/master/1559-detect-cycles-in-2d-grid) |
 ## Breadth-First Search
 |  |
 | ------- |
 | [0684-redundant-connection](https://github.com/Purv007/dsa/tree/master/0684-redundant-connection) |
+| [1559-detect-cycles-in-2d-grid](https://github.com/Purv007/dsa/tree/master/1559-detect-cycles-in-2d-grid) |
 ## Union-Find
 |  |
 | ------- |
 | [0684-redundant-connection](https://github.com/Purv007/dsa/tree/master/0684-redundant-connection) |
+| [1559-detect-cycles-in-2d-grid](https://github.com/Purv007/dsa/tree/master/1559-detect-cycles-in-2d-grid) |
 ## Graph Theory
 |  |
 | ------- |
