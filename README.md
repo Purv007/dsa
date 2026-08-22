@@ -56,23 +56,27 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0310-minimum-height-trees](https://github.com/Purv007/dsa/tree/master/0310-minimum-height-trees) |
 | [0684-redundant-connection](https://github.com/Purv007/dsa/tree/master/0684-redundant-connection) |
+| [0785-is-graph-bipartite](https://github.com/Purv007/dsa/tree/master/0785-is-graph-bipartite) |
 | [1559-detect-cycles-in-2d-grid](https://github.com/Purv007/dsa/tree/master/1559-detect-cycles-in-2d-grid) |
 ## Breadth-First Search
 |  |
 | ------- |
 | [0310-minimum-height-trees](https://github.com/Purv007/dsa/tree/master/0310-minimum-height-trees) |
 | [0684-redundant-connection](https://github.com/Purv007/dsa/tree/master/0684-redundant-connection) |
+| [0785-is-graph-bipartite](https://github.com/Purv007/dsa/tree/master/0785-is-graph-bipartite) |
 | [1559-detect-cycles-in-2d-grid](https://github.com/Purv007/dsa/tree/master/1559-detect-cycles-in-2d-grid) |
 ## Union-Find
 |  |
 | ------- |
 | [0684-redundant-connection](https://github.com/Purv007/dsa/tree/master/0684-redundant-connection) |
+| [0785-is-graph-bipartite](https://github.com/Purv007/dsa/tree/master/0785-is-graph-bipartite) |
 | [1559-detect-cycles-in-2d-grid](https://github.com/Purv007/dsa/tree/master/1559-detect-cycles-in-2d-grid) |
 ## Graph Theory
 |  |
 | ------- |
 | [0310-minimum-height-trees](https://github.com/Purv007/dsa/tree/master/0310-minimum-height-trees) |
 | [0684-redundant-connection](https://github.com/Purv007/dsa/tree/master/0684-redundant-connection) |
+| [0785-is-graph-bipartite](https://github.com/Purv007/dsa/tree/master/0785-is-graph-bipartite) |
 | [1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance](https://github.com/Purv007/dsa/tree/master/1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance) |
 ## Topological Sort
 |  |
@@ -94,4 +98,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance](https://github.com/Purv007/dsa/tree/master/1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance) |
+## Graph Coloring
+|  |
+| ------- |
+| [0785-is-graph-bipartite](https://github.com/Purv007/dsa/tree/master/0785-is-graph-bipartite) |
+## Bipartite Graph
+|  |
+| ------- |
+| [0785-is-graph-bipartite](https://github.com/Purv007/dsa/tree/master/0785-is-graph-bipartite) |
 <!---LeetCode Topics End-->
