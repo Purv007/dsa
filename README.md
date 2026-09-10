@@ -14,6 +14,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | ------- |
 | [0037-sudoku-solver](https://github.com/Purv007/dsa/tree/master/0037-sudoku-solver) |
 | [0090-subsets-ii](https://github.com/Purv007/dsa/tree/master/0090-subsets-ii) |
+| [0416-partition-equal-subset-sum](https://github.com/Purv007/dsa/tree/master/0416-partition-equal-subset-sum) |
 | [1559-detect-cycles-in-2d-grid](https://github.com/Purv007/dsa/tree/master/1559-detect-cycles-in-2d-grid) |
 | [3193-count-the-number-of-inversions](https://github.com/Purv007/dsa/tree/master/3193-count-the-number-of-inversions) |
 ## Backtracking
@@ -37,6 +38,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Dynamic Programming
 |  |
 | ------- |
+| [0416-partition-equal-subset-sum](https://github.com/Purv007/dsa/tree/master/0416-partition-equal-subset-sum) |
 | [1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance](https://github.com/Purv007/dsa/tree/master/1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance) |
 | [1976-number-of-ways-to-arrive-at-destination](https://github.com/Purv007/dsa/tree/master/1976-number-of-ways-to-arrive-at-destination) |
 | [3193-count-the-number-of-inversions](https://github.com/Purv007/dsa/tree/master/3193-count-the-number-of-inversions) |
@@ -115,4 +117,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [1757-recyclable-and-low-fat-products](https://github.com/Purv007/dsa/tree/master/1757-recyclable-and-low-fat-products) |
+## Knapsack Problem
+|  |
+| ------- |
+| [0416-partition-equal-subset-sum](https://github.com/Purv007/dsa/tree/master/0416-partition-equal-subset-sum) |
+## 0-1 Knapsack
+|  |
+| ------- |
+| [0416-partition-equal-subset-sum](https://github.com/Purv007/dsa/tree/master/0416-partition-equal-subset-sum) |
 <!---LeetCode Topics End-->
