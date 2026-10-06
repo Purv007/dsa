@@ -116,6 +116,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Database
 |  |
 | ------- |
+| [1070-product-sales-analysis-iii](https://github.com/Purv007/dsa/tree/master/1070-product-sales-analysis-iii) |
 | [1757-recyclable-and-low-fat-products](https://github.com/Purv007/dsa/tree/master/1757-recyclable-and-low-fat-products) |
 | [1934-confirmation-rate](https://github.com/Purv007/dsa/tree/master/1934-confirmation-rate) |
 ## Knapsack Problem
